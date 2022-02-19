@@ -49,6 +49,42 @@ app.post('/api/v1/favorites', (request, response) => {
 
 })
 
+app.delete('/api/v1/favorites/:id', (request, response) => {
+  const { id } = request.params
+  const { favorites } = app.locals
+  const favoriteToDelete = favorites.find(fav => fav.id === id)
+
+  if (!favoriteToDelete) {
+    return response.status(404).json({
+      message: `No book found with id of #${id} in your favorites.`
+    })
+  }
+
+  app.locals.favorites = favorites.filter(fav => fav.id !== id)
+
+  response.status(200).json({
+    message: `Book #${id} has been deleted from favorites`
+  })
+})
+
+app.delete('/api/v1/novels/:id', (request, response) => {
+  const { id } = request.params
+  const { novels } = app.locals
+  const novelToDelete = novels.find(novel => novel.id === parseInt(id))
+
+  if (!novelToDelete) {
+    return response.status(404).json({
+      message: `No novel found with id of #${id}.`
+    })
+  }
+
+  app.locals.novels = novels.filter(novel => novel.id !== parseInt(id))
+
+  response.status(200).json({
+    message: `Novel #${id} has been deleted`
+  })
+})
+
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on on http://localhost:${app.get('port')}.`);
 });
