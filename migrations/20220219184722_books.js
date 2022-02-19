@@ -12,6 +12,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable('books', (table) => {
       table.increments('id').primary();
+      table.string('isbn');
       table.string('title');
       table.string('description');
       table.string('amazonLink');
