@@ -8,16 +8,16 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'books',
-      user: 'postgres',
-      password: 'Booger9s'
+      database: 'book_club',
+      user: 'book_club_dev',
+      password: 'password'
     },
     pool: {
       min: 2,
       max: 10
     },
     migrations: {
-      tableName: 'knex_migrations'
+      directory: __dirname + '/migrations'
     }
   },
 
@@ -52,5 +52,7 @@ module.exports = {
       tableName: 'knex_migrations'
     }
   }
-
 };
+
+
+//INSERT INTO books (isbn, title, description, amazon_link, book_image, author) VALUES ('some isbn', 'a book', 'some stupid book', 'amazon.com', 'image.com', 'fuck');
