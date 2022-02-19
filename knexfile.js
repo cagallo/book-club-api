@@ -18,6 +18,9 @@ module.exports = {
     },
     migrations: {
       directory: __dirname + '/migrations'
+    },
+    seeds: {
+      directory: __dirname + '/seeds'
     }
   },
 
@@ -53,6 +56,3 @@ module.exports = {
     }
   }
 };
-
-
-//INSERT INTO books (isbn, title, description, amazon_link, book_image, author) VALUES ('some isbn', 'a book', 'some stupid book', 'amazon.com', 'image.com', 'fuck');
