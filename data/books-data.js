@@ -1,4 +1,4 @@
-export default booksData = [
+const booksData = [
   {
     "rank": 1,
     "rank_last_week": 0,
@@ -5711,3 +5711,6 @@ export default booksData = [
     "book_uri": "nyt://book/d5d98487-854d-5559-88b0-d951cf56ab7a"
   }
 ];
+
+
+module.exports = booksData;
