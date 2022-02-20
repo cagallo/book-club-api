@@ -18,6 +18,7 @@ app.get('/', (request, response) => {
 
 app.get('/api/v1/books', (request, response) => {
   queries.getAll().then(data => response.send(data))
+  .catch(error => response.status(500).json({ error }))
 });
 
 app.get('/api/v1/books/:id', (request, response) => {
