@@ -3,6 +3,7 @@ const express = require('express');
 const favorites = require('./data/favorites-data');
 const filteredBooks = require('./data/filtered-books-data');
 const app = express();
+const queries = require('./queries');
 app.use(express.json());
 
 
@@ -16,9 +17,7 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/books', (request, response) => {
-  const books = app.locals.books;
-
-  response.status(200).json({ books });
+  queries.getAll().then(data => response.send(data))
 });
 
 app.get('/api/v1/books/:id', (request, response) => {
