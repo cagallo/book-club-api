@@ -12,15 +12,11 @@ module.exports = {
       user: 'book_club_dev',
       password: 'password'
     },
-    pool: {
-      min: 2,
-      max: 10
-    },
     migrations: {
-      directory: __dirname + '/migrations'
+      directory: './db/migrations'
     },
     seeds: {
-      directory: __dirname + '/seeds'
+      directory: './db/seeds'
     }
   },
 
