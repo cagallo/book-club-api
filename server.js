@@ -3,7 +3,7 @@ const express = require('express');
 const favorites = require('./data/favorites-data');
 const filteredBooks = require('./data/filtered-books-data');
 const app = express();
-const queries = require('./queries');
+const queries = require('./db/queries');
 app.use(express.json());
 
 
