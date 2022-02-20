@@ -17,22 +17,15 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/books', (request, response) => {
-  queries.getAll().then(data => response.send(data))
+  queries.getAll()
+  .then(data => response.status(200).json(data))
   .catch(error => response.status(500).json({ error }))
 });
 
 app.get('/api/v1/books/:id', (request, response) => {
-  const { id } = request.params;
-  const book = app.locals.books.find(book => {
-    return book.id === id
-  });
-  if (!book) {
-    return response.status(404).json({
-      message: `No novel found with id of #${id}.`
-    });
-  }
-
-  response.status(200).json(book);
+  queries.getSingleBook(request)
+  .then(data => response.status(200).json(data))
+  .catch(error => response.status(404).json({ error }));
 });
 
 app.post('/api/v1/favorites', (request, response) => {
