@@ -17,48 +17,43 @@ app.get('/', (request, response) => {
 });
 
 app.get('/api/v1/books', (request, response) => {
-  queries.getAll()
-  .then(data => response.status(200).json(data))
-  .catch(error => response.status(500).json({ error }))
+  queries.getAllBooks()
+    .then(data => response.status(200).json(data))
+    .catch(error => response.status(500).json({ error }))
 });
 
 app.get('/api/v1/books/:id', (request, response) => {
   queries.getSingleBook(request)
-  .then(data => response.status(200).json(data))
-  .catch(error => response.status(404).json({ error }));
+    .then(data => response.status(200).json(data))
+    .catch(error => response.status(404).json({ error }));
+});
+
+app.get('/api/v1/favorites', (request, response) => {
+  queries.getAllFavs()
+    .then(data => response.status(200).json(data))
+    .catch(error => response.status(500).json({ error }))
 });
 
 app.post('/api/v1/favorites', (request, response) => {
   const favorite = request.body;
-  const { id, title, description, amazonLink, author, bookImage } = favorite;
-  for (let requiredParameter of ['id', 'title', 'description', 'amazonLink', 'author', 'bookImage']) {
+  const { title, description, 'amazon_link': amazonLink, author, 'book_image': bookImage } = favorite;
+  for (let requiredParameter of ['title', 'description', 'amazon_link', 'author', 'book_image']) {
     if (!favorite[requiredParameter]) {
       response.status(422)
-      .send({ error: `Expected format: {id: <String>, title: <String>, description: <String>, amazonLink: <String>, author: <String>, bookImage: <String>}. You’re missing a “${requiredParameter}” property.` });
+      .send({ error: `Expected format: {title: <String>, description: <String>, amazonLink: <String>, author: <String>, bookImage: <String>}. You’re missing a “${requiredParameter}” property.` });
     }
   }
-  app.locals.favorites.push({ id, title, description, amazonLink, author, bookImage });
-  response.status(201).json({ id, title, description, amazonLink, author, bookImage });
+  queries.addBookToFavs(favorite)
+    .then(data => response.status(201).json(data))
+    .catch(error => response.status(500).json({ error }));
+});
 
-})
-
-app.delete('/api/v1/favorites/:id', (request, response) => {
-  const { id } = request.params
-  const { favorites } = app.locals
-  const favoriteToDelete = favorites.find(fav => fav.id === id)
-
-  if (!favoriteToDelete) {
-    return response.status(404).json({
-      message: `No book found with id of #${id} in your favorites.`
-    })
-  }
-
-  app.locals.favorites = favorites.filter(fav => fav.id !== id)
-
+app.delete('/api/v1/favorites/:isbn', (request, response) => {
+  queries.removeBookFromFavs(request);
   response.status(200).json({
-    message: `Book #${id} has been deleted from favorites`
+    message: `Book with isbn #${request.params.isbn} has been deleted from favorites`
   })
-})
+});
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on on http://localhost:${app.get('port')}.`);
