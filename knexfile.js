@@ -26,11 +26,11 @@ module.exports = {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false }
     },
-    // migrations: {
-    //   directory: './db/migrations'
-    // },
-    // seeds: {
-    //   directory: './db/seeds'
-    // }
+    migrations: {
+      directory: './migrations'
+    },
+    seeds: {
+      directory: './seeds'
+    }
   }
 };
