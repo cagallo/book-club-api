@@ -13,10 +13,10 @@ module.exports = {
       password: 'password'
     },
     migrations: {
-      directory: './db/migrations'
+      directory: './migrations'
     },
     seeds: {
-      directory: './db/seeds'
+      directory: './seeds'
     }
   },
 
@@ -26,11 +26,11 @@ module.exports = {
       connectionString: process.env.DATABASE_URL,
       ssl: { rejectUnauthorized: false }
     },
-    migrations: {
-      directory: './db/migrations'
-    },
-    seeds: {
-      directory: './db/seeds'
-    }
+    // migrations: {
+    //   directory: './db/migrations'
+    // },
+    // seeds: {
+    //   directory: './db/seeds'
+    // }
   }
 };

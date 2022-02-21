@@ -1,4 +1,4 @@
-const connection = require('../knexfile')[process.env.DATABASE_URL || 'development'];
+const connection = require('./knexfile')[process.env.DATABASE_URL || 'development'];
 const database = require('knex')(connection);
 
 module.exports = {
