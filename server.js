@@ -1,11 +1,11 @@
+require('dotenv').config();
 const { request, response } = require('express');
 const express = require('express');
 const favorites = require('./data/favorites-data');
 const filteredBooks = require('./data/filtered-books-data');
 const app = express();
-const queries = require('./db/queries');
+const queries = require('./queries');
 app.use(express.json());
-
 
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Books Data';
@@ -27,7 +27,7 @@ app.get('/api/v1/books/:id', (request, response) => {
         response.status(404).json({
           error: `Could not find book with id ${request.params.id}`
         });
-      } 
+      }
     })
     .catch(error => response.status(500).json({ error }));
 });
