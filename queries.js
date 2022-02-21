@@ -1,4 +1,5 @@
-const connection = require('./knexfile')[process.env.DATABASE_URL || 'development'];
+require('dotenv').config();
+const connection = require('./knexfile')[process.env.DATABASE_URL || 'production'];
 const database = require('knex')(connection);
 
 module.exports = {

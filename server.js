@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { request, response } = require('express');
 const express = require('express');
 const favorites = require('./data/favorites-data');
