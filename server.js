@@ -13,6 +13,7 @@ app.locals.books = filteredBooks;
 app.locals.favorites = favorites;
 
 app.get('/api/v1/books', (request, response) => {
+  console.log(process.env.TEST);
   queries.getAllBooks()
     .then(data => response.status(200).json(data))
     .catch(error => response.status(500).json({ error }))
