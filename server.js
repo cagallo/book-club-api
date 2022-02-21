@@ -6,7 +6,6 @@ const app = express();
 const queries = require('./queries');
 app.use(express.json());
 
-
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Books Data';
 app.locals.books = filteredBooks;
