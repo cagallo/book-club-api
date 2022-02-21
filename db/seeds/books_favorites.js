@@ -19,8 +19,5 @@ exports.seed = function(knex) {
       .then(() => {
         return knex.raw('ALTER SEQUENCE favorites_id_seq RESTART WITH 1');
       })
-      .then(() => {
-        return knex('favorites').insert(favorites);
-      })
     })
 };
