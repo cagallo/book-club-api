@@ -1,11 +1,14 @@
 require('dotenv').config();
+const cors = require('cors');
 const { request, response } = require('express');
 const express = require('express');
 const favorites = require('./data/favorites-data');
 const filteredBooks = require('./data/filtered-books-data');
 const app = express();
 const queries = require('./queries');
+
 app.use(express.json());
+app.use(cors())
 
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Books Data';
