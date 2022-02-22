@@ -1,8 +1,6 @@
 require('dotenv').config();
-const connection = require('./knexfile')['production'];
+const connection = require('./knexfile')[process.env.NODE_ENV || 'development'];
 const database = require('knex')(connection);
-
-console.log(process.env.DATABASE_URL);
 
 module.exports = {
     getAllBooks() {

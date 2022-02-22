@@ -15,6 +15,3 @@ const generateAllBooks = (books) => {
     }
   })
 }
-
-console.log(generateAllBooks(books));
-console.log(books.length)
