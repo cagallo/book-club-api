@@ -46,7 +46,7 @@ app.post('/api/v1/favorites', (request, response) => {
   const { title, description, 'amazon_link': amazonLink, author, 'book_image': bookImage, isbn } = favorite;
   for (let requiredParameter of ['title', 'description', 'amazon_link', 'author', 'book_image', 'isbn']) {
     if (!favorite[requiredParameter]) {
-      response.status(422)
+      return response.status(422)
       .json({ message: `Expected format: {title: <String>, description: <String>, amazonLink: <String>, author: <String>, bookImage: <String>, isbn: <String>}. You’re missing a “${requiredParameter}” property.` });
     }
   }
@@ -66,6 +66,7 @@ app.delete('/api/v1/favorites/:id', (request, response) => {
         });
       }
     });
+
 });
 
 app.listen(app.get('port'), () => {
