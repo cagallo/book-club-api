@@ -55,14 +55,14 @@ app.post('/api/v1/favorites', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
-app.delete('/api/v1/favorites/:isbn', (request, response) => {
+app.delete('/api/v1/favorites/:id', (request, response) => {
   queries.removeBookFromFavs(request)
     .then(count => {
       if (count) {
-        response.status(200).json({ message: `Book with isbn#${request.params.isbn} has been removed from favorites.`});
+        response.status(200).json({ message: `Book with id#${request.params.id} has been removed from favorites.`});
       } else {
         response.status(404).json({
-          error: `Could not find book with id ${request.params.isbn}`
+          error: `Could not find book with id ${request.params.id}`
         });
       }
     });

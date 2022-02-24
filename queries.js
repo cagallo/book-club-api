@@ -13,7 +13,7 @@ module.exports = {
       return database('favorites').insert(favorite, 'id');
     },
     removeBookFromFavs(request) {
-      return database('favorites').where('isbn', request.params.isbn).del();
+      return database('favorites').where('id', request.params.id).del();
     },
     getAllFavs() {
       return database('favorites');
