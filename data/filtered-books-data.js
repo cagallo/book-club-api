@@ -525,7 +525,7 @@ const filteredBooks = [
       description: 'A six-week system that combines meal spacing and other elements.',
       amazon_link: 'http://www.amazon.com/Shred-Revolutionary-Weeks-Inches-Sizes/dp/1250035864?tag=NYTBSREV-20',
       author: 'Ian K Smith',
-      book_image: 'https://storage.googleapis.com/du-prd/books/images/9781250035868.jpg'
+      book_image: 'https://images-na.ssl-images-amazon.com/images/I/819+-lgfGOL.jpg'
     },
     {
       isbn: '9781609611545',
