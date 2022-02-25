@@ -19,8 +19,6 @@ module.exports = {
       return database('favorites');
     },
     updateFavorited(request) {
-      console.log("isbn -------->", request.params.isbn);
-      console.log("REQUEST BODY======>", JSON.stringify(request.body));
       return database('books').where('isbn', request.params.isbn).update({isFavorited: request.body.isFavorited});
     }
 }
