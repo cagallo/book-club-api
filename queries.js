@@ -7,7 +7,7 @@ module.exports = {
       return database('books');
     },
     getSingleBook(request) {
-      return database('books').where('id', request.params.id).select();
+      return database('books').where('isbn', request.params.isbn).select();
     },
     addBookToFavs(favorite) {
       return database('favorites').insert(favorite, 'id');
@@ -17,5 +17,8 @@ module.exports = {
     },
     getAllFavs() {
       return database('favorites');
+    },
+    updateFavorited(request) {
+      return database('books').where('isbn', request.params.isbn).update({isFavorited: request.body.isFavorited});
     }
 }

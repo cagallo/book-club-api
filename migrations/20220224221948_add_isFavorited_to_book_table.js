@@ -1,11 +1,11 @@
 exports.up = function(knex) {
   return knex.schema.table('books', (table) => {
-    table.timestamps(true, true);
-  });
+    table.string('isFavorited').defaultTo(false)
+  })
 };
 
 exports.down = function(knex) {
   return knex.schema.table('books', (table) => {
-    table.dropTimestamps();
-  });
+    table.dropColumn('isFavorited');
+  })
 };
