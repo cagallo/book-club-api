@@ -2,6 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const { request, response } = require('express');
 const express = require('express');
+const { all } = require('express/lib/application');
 const favorites = require('./data/favorites-data');
 const filteredBooks = require('./data/filtered-books-data');
 const app = express();
@@ -21,14 +22,14 @@ app.get('/api/v1/books', (request, response) => {
     .catch(error => response.status(500).json({ error }))
 });
 
-app.get('/api/v1/books/:id', (request, response) => {
+app.get('/api/v1/books/:isbn', (request, response) => {
   queries.getSingleBook(request)
     .then(books => {
       if (books.length) {
         response.status(200).json(books);
       } else {
         response.status(404).json({
-          error: `Could not find book with id ${request.params.id}`
+          error: `Could not find book with isbn ${request.params.isbn}`
         });
       }
     })
@@ -55,19 +56,30 @@ app.post('/api/v1/favorites', (request, response) => {
     .catch(error => response.status(500).json({ error }));
 });
 
-app.delete('/api/v1/favorites/:id', (request, response) => {
+app.delete('/api/v1/favorites/:isbn', (request, response) => {
   queries.removeBookFromFavs(request)
     .then(count => {
       if (count) {
-        response.status(200).json({ message: `Book with id#${request.params.id} has been removed from favorites.`});
+        response.status(200).json({ message: `Book with isbn#${request.params.isbn} has been removed from favorites.`});
       } else {
         response.status(404).json({
-          error: `Could not find book with id ${request.params.id}`
+          error: `Could not find book with isbn ${request.params.isbn}`
         });
       }
     });
-
 });
+
+app.patch('/api/v1/books/:isbn', async (request, response) => {
+  queries.updateFavorited(request)
+    .then(count => {
+      if (count) {
+        response.status(200).json({message: `Book with isbn#${request.params.isbn} isFavorited: ${request.body.isFavorited}`})
+      } else {
+        response.status(400).json({error: 'This request failed. Double check your request body and isbn# for proper formatting'})
+      }
+    });
+});
+  
 
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on on http://localhost:${app.get('port')}.`);
