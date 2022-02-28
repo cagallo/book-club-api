@@ -6,7 +6,7 @@
 
 ## Background
 
-This server was created to accompany the user interface of 'Book Club', a frontend Mod 3 project at the Turing School of Software and Design. We used the NYT Best Selling Books API to populate a PostgresSQL database which this API querys using knex. This server was written in JavaScript using Express and Node.
+This server was created to accompany the user interface of 'Book Club', a frontend Mod 3 project at the Turing School of Software and Design. We used the NYT Best Selling Books API to populate a PostgreSQL database which this API querys using knex. This server was written in JavaScript using Express and Node.
 
 ## Installation Instructions
 
@@ -34,7 +34,7 @@ This server was created to accompany the user interface of 'Book Club', a fronte
 ## Technologies Used
 
 - Express
-- PostgresSQL
+- PostgreSQL
 - Knex.js
 - JavaScript
 - Node
