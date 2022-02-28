@@ -18,7 +18,8 @@ This server was created to accompany the user interface of 'Book Club', a fronte
     - `npm install`
 4. To fire up the server, run:
     - `node server.js` or `nodemon server.js`(if you have nodemon installed)
-5. In the browser or postman, use the following endpoints with the base URL: http://localhost:3000/ to retrieve, post, or delete data. You can also use the following endpoints on the deployed Heroku API linked above. 
+5. In the browser or postman, use the following endpoints with the base URL: http://localhost:3000/ to retrieve, post, or delete data. 
+6. You can also use the following endpoints(besides books, takes you there automatically) on the deployed Heroku API linked above. 
 
 ## Endpoints
 
